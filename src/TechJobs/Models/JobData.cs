@@ -13,7 +13,6 @@ namespace TechJobs.Models
         public static List<Dictionary<string, string>> FindAll()
         {
             LoadData();
-
             // Bonus mission: return a copy
             return new List<Dictionary<string, string>>(AllJobs);
         }
@@ -30,11 +29,18 @@ namespace TechJobs.Models
 
             foreach (Dictionary<string, string> job in AllJobs)
             {
-                string aValue = job[column];
+                // string aValue = job[column].ToUpper();
 
-                if (!values.Contains(aValue))
+                //if (!values.Contains(aValue.ToUpper()))
+                //{
+                //    values.Add(aValue);
+                //}
+                foreach (string key in job.Keys)
                 {
-                    values.Add(aValue);
+                    if ((job[key]).ToUpper().Contains(column.ToUpper()))
+                    {
+                        values.Add(job[key]);
+                    }
                 }
             }
 
@@ -53,19 +59,13 @@ namespace TechJobs.Models
 
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
 
-            foreach (Dictionary<string, string> row in AllJobs)
+            foreach (Dictionary<string, string> job in AllJobs)
             {
-
-                foreach (string key in row.Keys)
+                foreach(string key in job.Keys)
                 {
-                    string aValue = row[key];
-
-                    if (aValue.ToLower().Contains(value.ToLower()))
+                    if (job[key].ToLower().Contains(value.ToLower()))
                     {
-                        jobs.Add(row);
-
-                        // Finding one field in a job that matches is sufficient
-                        break;
+                        jobs.Add(job);
                     }
                 }
             }
@@ -105,7 +105,6 @@ namespace TechJobs.Models
          */
         private static void LoadData()
         {
-
             if (IsDataLoaded)
             {
                 return;
