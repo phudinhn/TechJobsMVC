@@ -14,10 +14,10 @@ namespace TechJobs.Controllers
         static ListController() 
         {
             
-            columnChoices.Add("core competency", "Skill");
-            columnChoices.Add("employer", "Employer");
-            columnChoices.Add("location", "Location");
-            columnChoices.Add("position type", "Position Type");
+            columnChoices.Add("Core Competency", "Skill");
+            columnChoices.Add("Employer", "Employer");
+            columnChoices.Add("Location", "Location");
+            columnChoices.Add("Position Type", "Position Type");
             columnChoices.Add("all", "All");
         }
 
@@ -37,7 +37,7 @@ namespace TechJobs.Controllers
                 return View("Jobs");
             }
             else
-            {
+            {   
                 List<string> items = JobData.FindAll(column);
                 ViewBag.title =  "All " + columnChoices[column] + " Values";
                 ViewBag.column = column;
