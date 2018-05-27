@@ -23,29 +23,23 @@ namespace TechJobs.Models
          */
         public static List<string> FindAll(string column)
         {
+
             LoadData();
 
             List<string> values = new List<string>();
 
             foreach (Dictionary<string, string> job in AllJobs)
             {
-                // string aValue = job[column].ToUpper();
+                string aValue = job[column];
 
-                //if (!values.Contains(aValue.ToUpper()))
-                //{
-                //    values.Add(aValue);
-                //}
-                foreach (string key in job.Keys)
+                if (!values.Contains(aValue))
                 {
-                    if ((job[key]).ToUpper().Contains(column.ToUpper()))
-                    {
-                        values.Add(job[key]);
-                    }
+                    values.Add(aValue);
                 }
             }
 
-            // Bonus mission: sort results alphabetically
-            values.Sort();
+                // Bonus mission: sort results alphabetically
+                values.Sort();
             return values;
         }
 
